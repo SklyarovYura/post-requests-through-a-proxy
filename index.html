@@ -1,0 +1,36 @@
+<html>
+
+    <header>
+        <script type="text/javascript">
+
+            function sendData(body){
+
+                if(body.length){
+                    let headers = new Headers();
+                    headers.set('Content-Type','text/plain');
+
+                    fetch("http://localhost:8082/proxy",{method:'POST',body,headers})
+                    .then((res)=>{ 
+                        return res.text(); 
+                    }, (err)=>{ alert(err); })
+                    .then((data)=>{ 
+                       alert(data);
+                    });
+
+                }
+                else{
+                    alert('error empty data value')
+                }
+            }
+            
+        </script>   
+    </header>
+
+    <body>
+        <form>
+            <textarea id="send_data_field" rows="10" cols="20" wrap="hard"></textarea><br/>
+            <input type="button" onclick="sendData(document.getElementById('send_data_field').value);" value="send">
+        </form>
+    </body>
+
+</html>
